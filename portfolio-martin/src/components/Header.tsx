@@ -1,8 +1,8 @@
 export default function Header() {
     return (
-        <header className="flex justify-between items-center py-6">
-            <h1 className="text-2xl font-bold text-accent-purple">
-                My Portifolio
+        <header className="sticky top-0 z-40 flex justify-between items-center py-2 bg-bg-dark/80 backdrop-blur-md">
+            <h1 className="text-xl font-bold text-accent-purple">
+                My Portfolio
             </h1>
             <nav>
                 <ul className="flex gap-6 text-accent-purple font-medium">
