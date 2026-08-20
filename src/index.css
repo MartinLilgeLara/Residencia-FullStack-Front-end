@@ -1,4 +1,7 @@
 @import "tailwindcss";
+* {
+  scroll-behavior: smooth;
+}
 @theme {
   --color-bg-dark: #1a1a1a;
   --color-accent-orange: #e67e22;

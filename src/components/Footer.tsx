@@ -1,6 +1,6 @@
 export default function Footer(){
     return(
-        <footer id={"contact"} className={"mt-28 border-t border-neutral-800 pt-16 pb-12"}>
+        <footer id={"contact"} className={"mt-28 border-t border-neutral-800 pt-16 pb-12 scroll-mt-24"}>
             <div className={"grid grid-cols-1 md:grid-cols-2 gap-12 items-start"}>
                 <div>
                     <h3 className={"text-3xl font-extrabold text-accent-purple tracking-wide mb-4"}>

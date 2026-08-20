@@ -1,32 +1,24 @@
-# React + TypeScript + Vite
+# Portfolio - Martin Lara
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Portfólio pessoal focado em desenvolvimento web e ciência de dados, estruturado com componentização modular e layout responsivo.
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologias & Ferramentas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **React** — Biblioteca base para construção da interface orientada a componentes.
+* **TypeScript** — Tipagem estática para robustez e manutenção do código.
+* **Vite** — Ferramenta de build e servidor de desenvolvimento de alta performance.
+* **Tailwind CSS v4** — Framework utilitário para estilização e responsividade.
+* **Git & GitHub** — Controle de versão e hospedagem do repositório.
 
-## React Compiler
+## 🤖 Co-criação com IA
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este projeto foi desenvolvido em modelo de *pair programming* com o suporte de Inteligência Artificial (LLM). A IA atuou como colaboradora técnica no scaffolding da arquitetura, suporte na configuração de dependências e auxílio na sintaxe de estilização utilitária.
 
-## Expanding the Oxlint configuration
+## 🚀 Como Executar o Projeto
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+```bash
+# 1. Instalar as dependências
+npm install
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+# 2. Iniciar o servidor local
+npm run dev

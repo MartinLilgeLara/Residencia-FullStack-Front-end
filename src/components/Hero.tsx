@@ -1,6 +1,6 @@
 export default function Hero(){
     return (
-        <section id="home" className="my-16">
+        <section id="home" className="my-16 scroll-mt-24">
             <h2 className="text-6xl md:text-7xl font-extrabold text-accent-orange leading-none tracking-tight">
                 Martin<br/>Lara
             </h2>

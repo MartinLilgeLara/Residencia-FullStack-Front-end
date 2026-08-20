@@ -28,9 +28,9 @@ export default function Projects(){
     ];
 
     return(
-            <section id="projects" className="my-20">
+            <section id="projects" className="my-20 scroll-mt-24">
 
-                {/* Título da seção */}
+
                 <h3 className="text-2xl font-bold text-[#6c5ce7] mb-6">
                     Projects
                 </h3>

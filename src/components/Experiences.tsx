@@ -1,6 +1,6 @@
 export default function Experiences(){
     return(
-        <section id="experience" className="my-20">
+        <section id="experience" className="my-20 scroll-mt-24">
             <h3 className="text-2xl font-bold text-accent-purple mb-6">
                 Experiences
             </h3>
