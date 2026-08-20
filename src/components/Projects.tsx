@@ -1,3 +1,5 @@
+import{motion} from "framer-motion";
+
 export default function Projects(){
     const projectsList: ({ title: string; desc: string; tags: string[] }[]) = [
         {
@@ -38,8 +40,12 @@ export default function Projects(){
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {projectsList.map((project, index) => (
-                        <div
+                        <motion.div
                             key={index}
+                            initial={{opacity: 0, y:30}}
+                            whileInView={{opacity: 1, y:0}}
+                            viewport={{once:true}}
+                            transition={{duration:1, delay: index * 0.2}}
                             className="border-2 border-[#6c5ce7] rounded-2xl p-4 flex flex-col justify-between bg-[#1a1a1a]/50 hover:border-[#e67e22] hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
                         >
                             <div>
@@ -71,7 +77,7 @@ export default function Projects(){
                                 ))}
                             </div>
 
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </section>
