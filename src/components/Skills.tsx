@@ -1,12 +1,8 @@
+import {motion} from "framer-motion";
+import {skillsData} from "../data/skills.ts";
+
 export default function Skills(){
-    const skillsList = [
-        {name: "JavaScript\nTypeScript"},
-        {name: "HTML\nCSS"},
-        {name: "Python"},
-        {name: "MySQL"},
-        {name: "Java"},
-        {name: "Git"},
-    ]
+
     return (
         <section id="skills" className="my-20 scroll-mt-24">
 
@@ -19,21 +15,27 @@ export default function Skills(){
 
 
             <div className="flex flex-wrap gap-8 items-start">
-                {skillsList.map((skill, index) => (
-                    <div key={index} className="flex flex-col items-center w-20 group">
-
-                        <div className="w-16 h-16 bg-[#d2db96] rounded-2xl flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110 cursor-pointer">
-
-                            <div className="w-8 h-8 bg-neutral-800/40 rounded-full"></div>
-
-                        </div>
-
-                        <span className="text-accent-orange text-xs font-bold text-center mt-3 leading-tight whitespace-pre-line">
-              {skill.name}
-            </span>
-
-                    </div>
-                ))}
+                {skillsData.map((skill, index) => {
+                    const IconComponent = skill.Icon
+                    return (
+                        <motion.div
+                            key={index}
+                            initial={{opacity:0, scale: 0.9}}
+                            whileInView={{opacity:1, scale:1}}
+                            viewport={{once:true}}
+                            transition={{duration: 0.3, delay: index * 0.05}}
+                            whileHover={{scale:1.05, y:-4}}
+                            className="border border-neutral-800 hover:border-accent-purple bg-bg-dark p-4 rounded-2xl flex flex-col items-center justify-center gap-3 transitions-colors cursor-pointer group"
+                            >
+                            <div className={"w-12 h-12 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center group-hover:border-accent-purple transition-colors"}>
+                                <IconComponent className="w-6 h-6 text-neutral-400 group-hover:text-white transition-colors"/>
+                            </div>
+                            <span className="text-xs font-semibold text-neutral-300 group-hover:text-accent-orange transitions-colors">
+                                {skill.name}
+                            </span>
+                        </motion.div>
+                    );
+                })}
             </div>
         </section>
     );

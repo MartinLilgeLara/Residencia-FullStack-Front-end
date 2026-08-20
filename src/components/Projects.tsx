@@ -1,52 +1,27 @@
 import{motion} from "framer-motion";
+import{projectsData} from "../data/projects.ts";
 
 export default function Projects(){
-    const projectsList: ({ title: string; desc: string; tags: string[] }[]) = [
-        {
-            title:"Flood Simulation",
-            desc:"Fluid simulation of 2024 Canoas flooding",
-            tags:["Python","Numpy"],
-        },
-        {
-            title:"Data Analytics Platform",
-            desc:"Dashboard for metrics visualization and ETL",
-            tags:["PowerBI", "SQL"],
-        },
-        {
-            title:"Damage Calculator",
-            desc:"Dynamic damage calculator using a database",
-            tags:["PostgreSQL", "Python"],
-        },
-        {
-            title:"E-commerce Website",
-            desc:"Complete web application with dynamic catalog and checkout",
-            tags:["React","TypeScript"]
-        },
-        {
-            title:"Game engine prototype",
-            desc:"Object oriented architecture for game mechanics",
-            tags:["C++", "Godot"]
-        },
-    ];
+
 
     return(
             <section id="projects" className="my-20 scroll-mt-24">
 
 
-                <h3 className="text-2xl font-bold text-[#6c5ce7] mb-6">
+                <h3 className="text-2xl font-bold text-accent-purple mb-6">
                     Projects
                 </h3>
 
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    {projectsList.map((project, index) => (
+                    {projectsData.map((project, index) => (
                         <motion.div
                             key={index}
                             initial={{opacity: 0, y:30}}
                             whileInView={{opacity: 1, y:0}}
                             viewport={{once:true}}
                             transition={{duration:1, delay: index * 0.2}}
-                            className="border-2 border-[#6c5ce7] rounded-2xl p-4 flex flex-col justify-between bg-[#1a1a1a]/50 hover:border-[#e67e22] hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+                            className="border-2 border-accent-purple rounded-2xl p-4 flex flex-col justify-between bg-bg-dark/50 hover:border-accent-orange hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
                         >
                             <div>
 
@@ -55,7 +30,7 @@ export default function Projects(){
                                 </div>
 
 
-                                <h4 className="text-[#e67e22] font-bold text-sm mb-1 leading-snug">
+                                <h4 className="text-accent-orange font-bold text-sm mb-1 leading-snug">
                                     {project.title}
                                 </h4>
 
