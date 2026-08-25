@@ -5,12 +5,15 @@ import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 import Projects from "./components/Projects";
 import {LanguageProvider} from "./context/LanguageContext.tsx";
-
+import Background from "./components/Background.tsx";
 
 export default function App() {
   return (
       <LanguageProvider>
-          <div className="min-h-screen bg-bg-dark text-white font-sans px-6 md:px-20 py-6 max-w-6xl mx-auto">
+          <div className="relative min-h-screen text-white font-sans overflow-x-hidden">
+              {/* Camada 3D do Vanta.js (atrás de tudo) */}
+              <Background />
+          <div className="max-w-6xl mx-auto px-6 md:px-20 py-6 flex flex-col min-h-screen">
             <Header />
             <main>
                 <Hero />
@@ -19,6 +22,7 @@ export default function App() {
                 <Projects />
             </main>
               <Footer />
+          </div>
           </div>
       </LanguageProvider>
   );
