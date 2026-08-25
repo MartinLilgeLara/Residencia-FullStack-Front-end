@@ -1,15 +1,19 @@
 import {motion} from "framer-motion";
 import {skillsData} from "../data/skills.ts";
+import {useLanguage} from "../context/LanguageContext.tsx";
+import { translations } from "../data/translations";
+
 
 export default function Skills(){
-
+    const{language}= useLanguage();
+    const t = translations[language].sections
     return (
         <section id="skills" className="my-20 scroll-mt-24">
 
             <div className="mb-8">
-                <span className="text-accent-purple text-lg block font-semibold">My</span>
+
                 <h3 className="text-5xl font-black text-accent-purple tracking-wider">
-                    SKILLS
+                    {t.skillsTitle}
                 </h3>
             </div>
 

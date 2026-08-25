@@ -1,15 +1,18 @@
 import{motion} from "framer-motion";
 import{projectsData} from "../data/projects.ts";
+import {useLanguage} from "../context/LanguageContext.tsx";
+import { translations } from "../data/translations";
 
 export default function Projects(){
-
+    const{language}= useLanguage();
+    const t = translations[language].sections
 
     return(
             <section id="projects" className="my-20 scroll-mt-24">
 
 
                 <h3 className="text-2xl font-bold text-accent-purple mb-6">
-                    Projects
+                    {t.projectsTitle}
                 </h3>
 
 
@@ -31,12 +34,12 @@ export default function Projects(){
 
 
                                 <h4 className="text-accent-orange font-bold text-sm mb-1 leading-snug">
-                                    {project.title}
+                                    {project.title[language]}
                                 </h4>
 
 
                                 <p className="text-neutral-300 text-xs leading-relaxed line-clamp-3 mb-3">
-                                    {project.desc}
+                                    {project.desc[language]}
                                 </p>
                             </div>
 
