@@ -18,6 +18,15 @@ export const translations = {
 
 
         },
+        contact: {
+            namePlaceholder: "Seu Nome",
+            emailPlaceholder: "Seu E-mail",
+            messagePlaceholder: "Sua Mensagem...",
+            sendButton: "Enviar Mensagem",
+            sendingButton: "Enviando...",
+            successMessage: "Enviado com sucesso!",
+            errorMessage: "Erro ao enviar. Tente novamente.",
+        },
 
     },
     en:{
@@ -36,6 +45,15 @@ export const translations = {
             skillsTitle:"Skills",
             featuredBadge:"Featured",
             expandHint:"Click to expand",
+        },
+        contact: {
+            namePlaceholder: "Your Name",
+            emailPlaceholder: "Your Email",
+            messagePlaceholder: "Your Message...",
+            sendButton: "Send Message",
+            sendingButton: "Sending...",
+            successMessage: "Sent successfully!",
+            errorMessage: "Failed to send. Please try again.",
         },
     },
 }

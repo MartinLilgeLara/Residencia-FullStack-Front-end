@@ -1,86 +1,94 @@
-export default function Footer(){
-    return(
-        <footer id={"contact"} className={"mt-28 border-t border-neutral-800 pt-16 pb-12 scroll-mt-24"}>
-            <div className={"grid grid-cols-1 md:grid-cols-2 gap-12 items-start"}>
-                <div>
-                    <h3 className={"text-3xl font-extrabold text-accent-purple tracking-wide mb-4"}>
-                        Let's talk
-                    </h3>
-                    <p className={"text-neutral-400 text-sm max-w-sm mb-6 leading-relaxed"}>
-                    Send a message!
-                    </p>
-                    <div className={"space-y-3 text-sm"}>
-                        <p className={"text-neutral-300"}>
-                            <span className={"text-accent-orange font-semibold"}>Email:</span>
-                            <a href={"mailto:martinllara@gmail.com"} className={"hover:underline text-white"}>
-                                martinllara@gmail.com
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <form className={"flex flex-col gap-4 bg-neutral-900/50 p-6 rounded-2xl border border-neutral-800"}>
-                <div>
-                    <label className={"block text-xs font-semibold text-accent-orange mb-1.5"} htmlFor={"user-email"}>
-                        Your email
-                    </label>
-                    <input type={"email"}
-                           id={"user-email"}
-                           placeholder={"youremail@example.com"}
-                           className={"w-full bg-bg-dark border border-neutral-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accent-purple transition-colors"}
-                    />
-                </div>
-                <div>
-                    <label className={"block text-xs font-semibold text-accent-orange mb-1.5"} htmlFor={"user-message"}>
-                        Message
-                    </label>
-                    <textarea
-                        id={"user-message"}
-                        rows={4}
-                        placeholder={"Your message here"}
-                        className={"w-full bg-bg-dark border border-neutral-700 rounded-lg px-4 py-2.5 text-sm text-white resize-none focus:outline-none focus:border-accent-purple transition-colors"}
-                    />
-                </div>
-                <button
-                    type={"button"}
-                    className={"w-full bg-accent-purple hover:bg-[#5b4bc4] text-white font-semibold py-2.5 rounded-lg text-sm transition-colors cursor-pointer mt-2"}
-                >
-                    Send message
-                </button>
-            </form>
-            <div className={"mt-16 pt-6 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-4"}>
+import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
+import { FiSend, FiCheck, FiAlertCircle } from "react-icons/fi";
 
-                <span className={"text-xs text-neutral-500"}>
-                    Martin Lara · Web & Data
-                </span>
+export default function ContactForm() {
+    const { language } = useLanguage();
+    const t = translations[language].contact;
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-                <div className={"flex items-center gap-4"}>
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatus("loading");
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        formData.append("access_key", "5a20d472-2e3f-4df0-924d-04d50a7a044d");
 
-                    <a
-                        href={"https://github.com"}
-                        target={"_blank"}
-                        rel={"noreferrer"}
-                        aria-label={"Github profile"}
-                        className={"w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent-orange transition-colors"}
-                    >
-                        <svg className={"w-4 h-4 fill-current"} viewBox={"0 0 24 24"}>
-                            <path d={"M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"}/>
-                        </svg>
-                    </a>
-                    <a
-                        href={"https://linkedin.com"}
-                        target={"_blank"}
-                        rel={"noreferrer"}
-                        aria-label={"Linkedin Profile"}
-                        className={"w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent-orange transition-colors"}>
+        try {
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData,
+            });
 
-                        <svg className={"w-4 h-4 fill-current"} viewBox={"0 0 24 24"}>
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </footer>
-    )
+            if (res.ok) {
+                setStatus("success");
+                form.reset();
+                setTimeout(()=>{
+                    setStatus("idle");
+                },4000);
+            } else {
+                setStatus("error");
+                setTimeout(() => setStatus("idle"), 4000);
+            }
+        } catch {
+            setStatus("error");
+            setTimeout(() => setStatus("idle"), 4000);
+        }
+    };
 
+    return (
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col gap-3">
+            <input
+                type="text"
+                name="name"
+                required
+                placeholder={t.namePlaceholder}
+                className="px-4 py-2.5 rounded-xl bg-bg-dark border text-white text-sm focus:border-accent-purple outline-none"
+            />
+            <input
+                type="email"
+                name="email"
+                required
+                placeholder={t.emailPlaceholder}
+                className="px-4 py-2.5 rounded-xl bg-bg-dark border text-white text-sm focus:border-accent-purple outline-none"
+            />
+            <textarea
+                name="message"
+                required
+                rows={4}
+                placeholder={t.messagePlaceholder}
+                className="px-4 py-2.5 rounded-xl bg-bg-dark border text-white text-sm focus:border-accent-purple outline-none resize-none"
+            />
+
+            <button
+                type="submit"
+                disabled={status === "loading"}
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-accent-purple hover:bg-accent-purple/80 text-white font-semibold text-sm transition-all cursor-pointer disabled:opacity-50"
+            >
+                {status === "loading" && <span>{t.sendingButton}</span>}
+
+                {status === "success" && (
+                    <>
+                        <FiCheck className="text-accent-orange" />
+                        <span>{t.successMessage}</span>
+                    </>
+                )}
+
+                {status === "error" && (
+                    <>
+                        <FiAlertCircle className="text-red-400" />
+                        <span>{t.errorMessage}</span>
+                    </>
+                )}
+
+                {status === "idle" && (
+                    <>
+                        <FiSend />
+                        <span>{t.sendButton}</span>
+                    </>
+                )}
+            </button>
+        </form>
+    );
 }
