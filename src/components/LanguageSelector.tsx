@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
-import { FiGlobe } from "react-icons/fi"; // ou use um SVG simples
-
+import { FiGlobe } from "react-icons/fi";
+import { FlagBR, FlagUS } from "./Flags";
 
 
 export default function LanguageSelector() {
@@ -14,7 +14,7 @@ export default function LanguageSelector() {
         <FiGlobe className="w-3.5 h-3.5" />
       </span>
 
-            <div className="relative flex items-center w-20">
+            <div className="relative flex items-center w-28">
 
                 <motion.div
                     className="absolute top-0 bottom-0 left-0 w-1/2 bg-accent-purple rounded-full shadow-sm"
@@ -32,8 +32,10 @@ export default function LanguageSelector() {
                     className={`relative z-10 w-1/2 py-1 text-xs font-semibold text-center rounded-full transition-colors cursor-pointer ${
                         language === "pt" ? "text-white" : "text-neutral-400 hover:text-neutral-200"
                     }`}
+                    title="Portugues"
                 >
-                    PT
+                    <FlagBR className="w-3.5 h-3.5" />
+                    <span>PT</span>
                 </button>
 
 
@@ -43,8 +45,10 @@ export default function LanguageSelector() {
                     className={`relative z-10 w-1/2 py-1 text-xs font-semibold text-center rounded-full transition-colors cursor-pointer ${
                         language === "en" ? "text-white" : "text-neutral-400 hover:text-neutral-200"
                     }`}
+                    title="English"
                 >
-                    EN
+                    <FlagUS className="w-3.5 h-3.5" />
+                    <span>EN</span>
                 </button>
                 </div>
         </div>

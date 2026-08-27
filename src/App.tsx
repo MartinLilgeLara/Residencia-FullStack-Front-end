@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Projects from "./components/Projects";
 import {LanguageProvider} from "./context/LanguageContext.tsx";
 import Background from "./components/Background.tsx";
-
+import ContactForm from "./components/ContactForm.tsx"
 export default function App() {
   return (
       <LanguageProvider>
@@ -20,6 +20,7 @@ export default function App() {
                 <Experiences />
                 <Skills />
                 <Projects />
+                <ContactForm />
             </main>
               <Footer />
           </div>

@@ -1,94 +1,40 @@
-import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../data/translations";
-import { FiSend, FiCheck, FiAlertCircle } from "react-icons/fi";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
+import { FaXTwitter } from 'react-icons/fa6';
 
-export default function ContactForm() {
+export default function Footer() {
     const { language } = useLanguage();
-    const t = translations[language].contact;
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const currentYear = new Date().getFullYear();
 
-    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus("loading");
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        formData.append("access_key", "5a20d472-2e3f-4df0-924d-04d50a7a044d");
-
-        try {
-            const res = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData,
-            });
-
-            if (res.ok) {
-                setStatus("success");
-                form.reset();
-                setTimeout(()=>{
-                    setStatus("idle");
-                },4000);
-            } else {
-                setStatus("error");
-                setTimeout(() => setStatus("idle"), 4000);
-            }
-        } catch {
-            setStatus("error");
-            setTimeout(() => setStatus("idle"), 4000);
-        }
-    };
+    const socialLinks = [
+        { name: "GitHub", href: "https://github.com/SEU_USUARIO", icon: <FiGithub className="w-5 h-5" /> },
+        { name: "LinkedIn", href: "https://linkedin.com/in/SEU_USUARIO", icon: <FiLinkedin className="w-5 h-5" /> },
+        { name: "X (Twitter)", href: "https://x.com/SEU_USUARIO", icon: <FaXTwitter className="w-5 h-5" /> },
+    ];
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col gap-3">
-            <input
-                type="text"
-                name="name"
-                required
-                placeholder={t.namePlaceholder}
-                className="px-4 py-2.5 rounded-xl bg-bg-dark border text-white text-sm focus:border-accent-purple outline-none"
-            />
-            <input
-                type="email"
-                name="email"
-                required
-                placeholder={t.emailPlaceholder}
-                className="px-4 py-2.5 rounded-xl bg-bg-dark border text-white text-sm focus:border-accent-purple outline-none"
-            />
-            <textarea
-                name="message"
-                required
-                rows={4}
-                placeholder={t.messagePlaceholder}
-                className="px-4 py-2.5 rounded-xl bg-bg-dark border text-white text-sm focus:border-accent-purple outline-none resize-none"
-            />
+        <footer className="mt-16 border-t border-neutral-800/80 py-10 text-center flex flex-col items-center justify-center gap-5">
+            <div className="flex items-center gap-4">
+                {socialLinks.map((item) => (
+                    <a
+                        key={item.name}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={item.name}
+                        className="p-3 rounded-xl bg-neutral-900/90 border border-neutral-800 text-neutral-400 hover:text-accent-orange hover:border-accent-purple/60 hover:-translate-y-1 transition-all duration-300 shadow-md"
+                    >
+                        {item.icon}
+                    </a>
+                ))}
+            </div>
 
-            <button
-                type="submit"
-                disabled={status === "loading"}
-                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-accent-purple hover:bg-accent-purple/80 text-white font-semibold text-sm transition-all cursor-pointer disabled:opacity-50"
-            >
-                {status === "loading" && <span>{t.sendingButton}</span>}
-
-                {status === "success" && (
-                    <>
-                        <FiCheck className="text-accent-orange" />
-                        <span>{t.successMessage}</span>
-                    </>
-                )}
-
-                {status === "error" && (
-                    <>
-                        <FiAlertCircle className="text-red-400" />
-                        <span>{t.errorMessage}</span>
-                    </>
-                )}
-
-                {status === "idle" && (
-                    <>
-                        <FiSend />
-                        <span>{t.sendButton}</span>
-                    </>
-                )}
-            </button>
-        </form>
+            <p className="text-xs md:text-sm text-neutral-500">
+                © {currentYear} •{" "}
+                {language === "pt"
+                    ? "Desenvolvido com React, TypeScript & Tailwind CSS"
+                    : "Built with React, TypeScript & Tailwind CSS"}
+            </p>
+        </footer>
     );
 }
